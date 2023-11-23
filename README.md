@@ -3,7 +3,10 @@
 
 Фронтенд пет-проекта "Пчелобаза" - сайта для пчеловодов
 
-`Стек:`  
+### Макеты в Figma  
+https://www.figma.com/file/748w3YfernlrfhSHIY06Rh/phelobaza?type=design&node-id=256-518&mode=design&t=xw1XYSVkd10Ir5Ci-0
+
+### Стек  
 react  
 jest  
 mvc  
