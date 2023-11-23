@@ -1,0 +1,8 @@
+export type ParticipantDto = {
+    UserId: string, 
+    Login: string, 
+    Name: string, 
+    Surname: string, 
+    Contact: string, 
+    RegisteredAt: string
+}
