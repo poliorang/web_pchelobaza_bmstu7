@@ -11,4 +11,4 @@
 > jest  
 > mvc  
 
-![видео](more/front.mov)
+![видео](https://github.com/poliorang/web_pchelobaza_bmstu7/blob/main/more/front.mov)
