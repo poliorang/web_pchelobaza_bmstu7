@@ -1,0 +1,11 @@
+.honey-table {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 90px;
+    justify-content: center;
+
+    max-width: 1400px;
+    margin: 0 auto;
+
+    margin-top: 200px;
+}

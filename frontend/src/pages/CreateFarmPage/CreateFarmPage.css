@@ -1,0 +1,63 @@
+.create-farm-page {
+    padding-top: 200px;
+
+    padding-bottom: 200px;
+}
+
+.honey-select-column {
+    width: 585px;
+    padding: 20px;
+
+    background: #FFF;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    column-gap: 10px;
+    row-gap: 20px;
+
+    height: 450px;
+}
+
+.honey-select-column h2 {
+    width: 100%;
+}
+
+.farm-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.farm-info {
+    padding: 40px;
+    background: #fff;
+
+    width: 430px;
+    height: 220px;
+}
+
+.farm-login {
+    padding: 40px;
+    background: #fff;
+
+    width: 430px;
+    height: 120px;
+}
+
+.farm-description {
+    padding: 20px;
+    background: #fff;
+
+    height: 200px;
+    width: 430px;
+}
+
+.farm-description textarea {
+    width: 350px;
+    height: 100px;
+
+
+}

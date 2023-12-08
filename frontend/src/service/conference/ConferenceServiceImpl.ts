@@ -4,9 +4,14 @@ import {ConferenceBusiness} from "../../model/business/conference/ConferenceBusi
 import {ConferenceDatabase} from "../../model/database/conference/ConferenceDatabase";
 import {ReviewBusiness} from "../../model/business/review/ReviewBusiness";
 import { UserBusinessModel } from "../../model/business/user/UserBusinessModel";
+import { ConferenceDao } from "../../dao/conference/ConferenceDao";
 
 export class ConferenceServiceImpl implements ConferenceService {
-    private conferenceDao = new ConferenceDaoImpl()
+    private conferenceDao;
+
+    constructor(dao?: ConferenceDao) {
+        this.conferenceDao = dao ?? new ConferenceDaoImpl()
+    }
 
     getAllConferences(token: string, limit: string, skipped: string): Promise<Array<ConferenceBusiness>> {
         return this.conferenceDao.getAllConferences(token, limit, skipped).then(it => {
@@ -23,8 +28,8 @@ export class ConferenceServiceImpl implements ConferenceService {
         )
     }
 
-    createNewConference(token: string, conference: ConferenceBusiness): void {
-        this.conferenceDao.createNewConference(token, conference.convert())
+    createNewConference(token: string, conference: ConferenceBusiness) {
+        return this.conferenceDao.createNewConference(token, conference.convert())
     }
 
     updateConferenceInfo(token: string, conference: ConferenceBusiness): void {
@@ -40,8 +45,8 @@ export class ConferenceServiceImpl implements ConferenceService {
         )
     }
 
-    updateParticipantConference(token: string, name: string): void {
-        this.conferenceDao.updateParticipantConference(token, name)
+    updateParticipantConference(token: string, name: string) {
+        return this.conferenceDao.updateParticipantConference(token, name)
     }
 
     getReviews(token: string, name: string): Promise<Array<ReviewBusiness>> {
@@ -52,7 +57,7 @@ export class ConferenceServiceImpl implements ConferenceService {
         })
     }
 
-    createReview(token: string, name: string, review: ReviewBusiness): void {
+    createReview(token: string, name: string, review: ReviewBusiness) {
         return this.conferenceDao.createReview(token, name, review.convert())
     }
 }

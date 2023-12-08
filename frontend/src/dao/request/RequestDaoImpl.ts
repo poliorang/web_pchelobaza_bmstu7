@@ -4,8 +4,8 @@ import {RequestDatabaseImpl} from "../../model/database/request/RequestDatabaseI
 import {RqParamsLimited} from "../../dto/RqParamsLimited";
 
 type Request = {
-    RequestId: number, 
-    UserId: number, 
+    RequestId: number,
+    UserId: number,
     UserLogin: string,
     Description: string,
     Status: string
@@ -35,7 +35,7 @@ export class RequestDaoImpl implements RequestDao {
 
         let result = ((await response.json()) as GetRequestRq);
         console.log(result);
-        
+
         return result.requests.map(request =>  {
             const res = new RequestDatabaseImpl(
                 request.RequestId, request.UserId, request.UserLogin, request.Description, request.Status
@@ -44,8 +44,8 @@ export class RequestDaoImpl implements RequestDao {
         })
     }
 
-    createRequest(token: string, request: RequestDatabase): void {
-        fetch(`${this.host}${this.apiVersion}requests`, {
+    createRequest(token: string, request: RequestDatabase) {
+        return fetch(`${this.host}${this.apiVersion}requests`, {
             method: 'POST',
             body: JSON.stringify({
                 login: request.getLogin(),
@@ -60,8 +60,8 @@ export class RequestDaoImpl implements RequestDao {
         });
     }
 
-    updateRequest(token: string, request: RequestDatabase): void {
-        fetch(`${this.host}${this.apiVersion}requests?login=${request.getLogin()}`, {
+    updateRequest(token: string, request: RequestDatabase) {
+        return fetch(`${this.host}${this.apiVersion}requests?login=${request.getLogin()}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 login: request.getLogin(),

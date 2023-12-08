@@ -1,0 +1,33 @@
+
+.main-page {
+    position: relative;
+
+    padding: 40px;
+    margin-right: -150px;
+}
+
+.soty-image {
+    position: absolute;
+    left: 0;
+
+    transform: translateX(-80%) translateY(-40%);
+    margin-right: -40px;
+}
+
+.main-header {
+    color: rgba(52, 48, 37, 1);
+
+    font-size: 28px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+}
+
+.main-info {
+    color:rgba(52, 48, 37, 1);
+    font-size: 12px;
+    line-height: 28px;
+
+    max-width: 570px;
+}

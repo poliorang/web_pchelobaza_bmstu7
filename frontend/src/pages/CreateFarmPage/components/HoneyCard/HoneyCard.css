@@ -1,0 +1,17 @@
+.honey-card {
+    width: 580px;
+    height: 375px;
+
+    padding: 30px;
+}
+
+.honey-card h2 {
+    font-size: 28px;
+}
+
+.honey-card p {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 28px;
+    color: rgba(52, 48, 37, 1);
+}

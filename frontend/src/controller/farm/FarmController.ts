@@ -16,7 +16,7 @@ export class FarmController {
         return this.farmService.getConcreteFarm(farmName, token)
     }
 
-    createFarm(token: string, farm: CreateFarmDto): void {
+    createFarm(token: string, farm: CreateFarmDto) {
         return this.farmService.createFarm(token, new FarmBusinessImpl(
             farm.farmId, farm.name, farm.description, farm.address, farm.userLogin, farm.userId,
             farm.honey.map(honey => {
@@ -27,7 +27,7 @@ export class FarmController {
         ))
     }
 
-    updateFarm(farmName: string, token: string, farm: CreateFarmDto): void {
+    updateFarm(farmName: string, token: string, farm: CreateFarmDto) {
         return this.farmService.updateFarm(farmName, token, new FarmBusinessImpl(
             farm.farmId, farm.name, farm.description, farm.address, farm.userLogin, farm.userId,
             farm.honey.map(honey => {

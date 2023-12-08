@@ -10,8 +10,8 @@ export class UserController {
         return this.userService.getUser(login, token)
     }
 
-    updateUser(token: string, dto: EditUserInfoDto): void {
-        this.userService.updateUser(token,
+    updateUser(token: string, dto: EditUserInfoDto) {
+        return this.userService.updateUser(token,
             new UserBusinessModelImpl(
                 dto.userId, dto.login, dto.password, dto.name, dto.surname, dto.contact, "", ""
             )

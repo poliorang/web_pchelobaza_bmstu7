@@ -36,7 +36,7 @@ describe('AuthServiceImpl', () => {
     });
 
     it('should call signup method of AuthDao with correct argument', async () => {
-        const spySignup = jest.spyOn(mockAuthDao, 'signup').mockReturnValue(Promise.resolve('token'));
+        const spySignup = jest.spyOn(mockAuthDao, 'signup').mockResolvedValue('token');
 
         const signupDto: SingupRqDto = {
             login: 'login',

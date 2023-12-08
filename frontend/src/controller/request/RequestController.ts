@@ -11,13 +11,13 @@ export class RequestController {
         return this.requestService.getRequests(params)
     }
 
-    createRequest(token: string, rq: CreateRequestDto): void {
+    createRequest(token: string, rq: CreateRequestDto) {
         return this.requestService.createRequest(token, new RequestBusinessImpl(
-            0, 0 , rq.login, rq.description, rq.status
+            0, 0, rq.login, rq.description, rq.status
         ))
     }
 
-    updateRequest(token: string, rq: CreateRequestDto): void {
+    updateRequest(token: string, rq: CreateRequestDto) {
         return this.requestService.updateRequest(token, new RequestBusinessImpl(
             0, 0, rq.login, rq.description, rq.status
         ))

@@ -1,3 +1,4 @@
+import { error } from 'console';
 import {AuthDao} from "./AuthDao";
 import {SingupRqDto} from "../../dto/SingupRqDto";
 import { ok } from "assert";
@@ -25,13 +26,19 @@ export class AuthDaoImpl implements AuthDao {
         });
 
         if (response.status == 400) {
+            const res = await response.json();
+
+            if ((res.error as string).includes("Неверный пароль")) {
+                throw new Error("password");
+            }
+            
             throw new Error("Bad request")
         } else if (response.status == 500) {
             throw new Error("Status internal server error")
         } else if (!response.ok) {
             throw new Error("Internal server error")
         }
-        
+
         return ((await response.json()) as AuthRs).token;
     }
 
@@ -51,10 +58,9 @@ export class AuthDaoImpl implements AuthDao {
                     'contact': dto.contact
                 })
             });
-    
+
             return ((await response.json()) as AuthRs).token;
         }
-        
         return "Bad email"
     }
 

@@ -26,16 +26,23 @@ export class UserDaoImpl implements UserDao {
             }
         });
 
+        if (!response.ok) {
+            return Promise.reject();
+        }
+
         let result = ((await response.json()) as GetUserRs);
+
+        console.log(result);
         
+
         return new UserDatabaseModelImpl(
             result.userId, "", result.login, result.name, result.surname, result.contact, result.registration_date, result.role
         );
     }
 
-    updateUser(token: string, user: UserDatabaseModel): void {
+    updateUser(token: string, user: UserDatabaseModel) {
         console.log("aaa", token, user.getId(), user.getLogin(), user.getPassword(), user.getName(), user.getSurname(), user.getContact());
-        fetch(`${this.host}${this.apiVersion}users/${user.getLogin()}`, {
+        return fetch(`${this.host}${this.apiVersion}users/${user.getLogin()}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 userId: user.getId(),

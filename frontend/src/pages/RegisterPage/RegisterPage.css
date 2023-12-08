@@ -1,0 +1,10 @@
+.register-wrapper {
+    display: flex;
+    gap: 115px;
+}
+
+.register-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,0 +1,16 @@
+.create-review {
+    width: 580px;
+    height: 375px;
+
+    padding: 30px;
+}
+
+.review-input {
+    width: 520px;
+    height: 215px;
+}
+
+.review-submit {
+    margin-left: auto;
+    margin-top: 20px;
+}

@@ -1,0 +1,15 @@
+
+.conferences-table {
+    max-width: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 77px;
+
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
+.conferences-page {
+
+}

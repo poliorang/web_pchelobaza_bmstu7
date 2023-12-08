@@ -1,0 +1,10 @@
+
+.req-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.req-actions > div {
+    display: flex;
+    gap: 10px;
+}

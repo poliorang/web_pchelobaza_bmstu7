@@ -20,9 +20,9 @@ export class ConferenceController {
         return this.conferenceService.getConference(token, name)
     }
 
-    createNewConference(token: string, conference: ConferenceDto): void {
-        this.conferenceService.createNewConference(token, new ConferenceBusinessImpl(
-            0, conference.name, conference.owner, conference.description, conference.date, conference.address, conference.currentUsers, conference.maxUsers
+    createNewConference(token: string, conference: ConferenceDto) {
+        return this.conferenceService.createNewConference(token, new ConferenceBusinessImpl(
+            0, conference.name, conference.userLogin, conference.description, conference.date, conference.address, conference.currentUsers, conference.maxUsers
         ))
     }
 
@@ -36,16 +36,16 @@ export class ConferenceController {
         return this.conferenceService.getParticipantConference(token, name)
     }
 
-    updateParticipantConference(token: string, name: string): void {
-        this.conferenceService.updateParticipantConference(token, name)
+    updateParticipantConference(token: string, name: string) {
+        return this.conferenceService.updateParticipantConference(token, name)
     }
 
     getReviews(token: string, name: string): Promise<Array<ReviewBusiness>> {
         return this.conferenceService.getReviews(token, name)
     }
 
-    createReview(token: string, name: string, review: CreateReviewDto): void {
-        this.conferenceService.createReview(token, name, new ReviewBusinessImpl(
+    createReview(token: string, name: string, review: CreateReviewDto) {
+        return this.conferenceService.createReview(token, name, new ReviewBusinessImpl(
             review.login, review.name, review.surname, review.date, review.description
         ))
     }

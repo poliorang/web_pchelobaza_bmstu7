@@ -1,0 +1,13 @@
+.field {
+
+}
+
+.field-label {
+    color: rgba(238, 181, 35, 1);
+    font-size: 16px;
+}
+
+.field-value {
+    color: rgba(52, 48, 37, 1);
+    font-size: 28px;
+}

@@ -10,3 +10,5 @@
 > react  
 > jest  
 > mvc  
+
+![видео](more/front.mov)

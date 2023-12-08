@@ -1,0 +1,25 @@
+.farms-table {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.farm-card {
+    padding: 27px;
+
+    width: 582px;
+    height: 235px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.farm-card h2 {
+    font-size: 28px;
+}
+
+.create-farm-button {
+    margin-left: auto;
+
+    display: block;
+}

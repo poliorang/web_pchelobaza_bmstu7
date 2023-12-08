@@ -1,7 +1,7 @@
 export type ConferenceDto = {
     confId: number,
     name: string,
-    owner: string,
+    userLogin: string;
     description: string,
     date: string,
     address: string,

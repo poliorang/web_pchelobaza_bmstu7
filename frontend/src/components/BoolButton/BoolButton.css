@@ -1,0 +1,31 @@
+.bool-button {
+    width: 250px;
+    height: 70px;
+    font-size: 28px;
+
+    color: rgba(52, 48, 37, 1);
+    background: rgba(255, 208, 80, 1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bool-button::before,
+.bool-button::after {
+    display: none;
+}
+
+.bool-button.small {
+    width: 175px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.bool-button.positive {
+    background: rgba(255, 208, 80, 1);
+}
+
+.bool-button.negative {
+    background: rgba(197, 172, 151, 1)
+}

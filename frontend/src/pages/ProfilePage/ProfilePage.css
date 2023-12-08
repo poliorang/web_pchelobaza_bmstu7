@@ -1,0 +1,71 @@
+
+
+.profile-page {
+    width: 100%;
+    min-height: 100vh;
+
+    padding-top: 180px;
+    padding-bottom: 200px;
+}
+
+.profile-info {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
+
+@media screen and (max-width: 1300px) {
+    .profile-info,
+    .farms-table {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .contacts-main,
+    .contacts-login,
+    .farm-card {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.contacts-main {
+    width: 430px;
+    height: 530px;
+    background: #fff;
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contacts-field {
+    margin-bottom: 25px;
+}
+
+.contacts-field.contact {
+    margin-top: 90px;
+}
+
+.contacts-field > span {
+    color: rgba(238, 181, 35, 1);
+    font-size: 16px;
+}
+
+.contacts-field > p {
+    color: rgba(52, 48, 37, 1);
+    font-size: 28px;
+}
+
+.contacts-login {
+    width: 430px;
+    height: 116px;
+
+    padding: 40px;
+
+    margin-top: 40px;
+}

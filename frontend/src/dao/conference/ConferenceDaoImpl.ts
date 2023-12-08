@@ -27,10 +27,10 @@ type ConferenceRs = {
 
 type Review = {
     Login: string,
-    Name: string, 
-    Surname: string, 
-    Date: string, 
-    Description: string, 
+    Name: string,
+    Surname: string,
+    Date: string,
+    Description: string,
 }
 
 type GetReviewRs = {
@@ -40,13 +40,13 @@ type GetReviewRs = {
 type User = {
     UserId: string,
     Login: string,
-    Password: string, 
-    ConfirmPassword: string, 
-    Name: string, 
-    Surname: string, 
+    Password: string,
+    ConfirmPassword: string,
+    Name: string,
+    Surname: string,
     Contact: string,
-    RegisteredAt: string, 
-    Role: string, 
+    RegisteredAt: string,
+    Role: string,
 }
 
 type UserRs = {
@@ -86,14 +86,14 @@ export class ConferenceDaoImpl implements ConferenceDao {
         let conference = ((await response.json()) as ConferenceDto)
 
         return new ConferenceDatabaseImpl(
-            0, conference.name, conference.owner, conference.description, conference.date, conference.address, conference.currentUsers, conference.maxUsers
+            0, conference.name, conference.userLogin, conference.description, conference.date, conference.address, conference.currentUsers, conference.maxUsers
         )
     }
 
-    createNewConference(token: string, conference: ConferenceDatabase): void {
+    createNewConference(token: string, conference: ConferenceDatabase) {
         console.log(conference.getName(), conference.getOwner(), conference.getDescription(), conference.getDate(), conference.getAddress(), conference.getCurrentUsers(), conference.getMaxUsers());
-        
-        fetch(`${this.host}${this.apiVersion}conferences`, {
+
+        return fetch(`${this.host}${this.apiVersion}conferences`, {
             method: 'POST',
             body: JSON.stringify({
                 name: conference.getName(),
@@ -112,8 +112,8 @@ export class ConferenceDaoImpl implements ConferenceDao {
         });
     }
 
-    updateConferenceInfo(token: string, conference: ConferenceDatabase): void {
-        fetch(`${this.host}${this.apiVersion}conferences/${conference.getName()}`, {
+    updateConferenceInfo(token: string, conference: ConferenceDatabase) {
+        return fetch(`${this.host}${this.apiVersion}conferences/${conference.getName()}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 name: conference.getName(),
@@ -142,7 +142,7 @@ export class ConferenceDaoImpl implements ConferenceDao {
 
         let result = ((await response.json()) as UserRs)
         console.log(result);
-        
+
         return result.users.map(user => {
             return new UserDatabaseModelImpl(
                 0, user.Login, user.Surname, user.Name, "", "", "", ""
@@ -150,8 +150,8 @@ export class ConferenceDaoImpl implements ConferenceDao {
         })
     }
 
-    updateParticipantConference(token: string, name: string): void {
-        fetch(`${this.host}${this.apiVersion}conferences/${name}/participants`, {
+    updateParticipantConference(token: string, name: string) {
+        return fetch(`${this.host}${this.apiVersion}conferences/${name}/participants`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -169,7 +169,7 @@ export class ConferenceDaoImpl implements ConferenceDao {
             }
         });
 
-        let result = ((await response.json()) as GetReviewRs)        
+        let result = ((await response.json()) as GetReviewRs)
 
         return result.reviews.map(review => {
             return new ReviewDatabaseImpl(
@@ -178,10 +178,10 @@ export class ConferenceDaoImpl implements ConferenceDao {
         })
     }
 
-    createReview(token: string, name: string, review: ReviewDatabase): void {
+    createReview(token: string, name: string, review: ReviewDatabase) {
         console.log("aa", review.getDescription());
-        
-        fetch(`${this.host}${this.apiVersion}conferences/${name}/reviews`, {
+
+        return fetch(`${this.host}${this.apiVersion}conferences/${name}/reviews`, {
             method: 'POST',
             body: JSON.stringify({
                 description: review.getDescription()

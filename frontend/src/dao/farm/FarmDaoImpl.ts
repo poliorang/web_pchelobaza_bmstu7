@@ -37,9 +37,13 @@ export class FarmDaoImpl implements FarmDao {
             }
         });
 
+        if (!response.ok) {
+            return Promise.reject();
+        }
+
         let result = ((await response.json()) as GetFarmRs);
         console.log("farms", result);
-        
+
         return result.farms.map(farm => {
             return new FarmDatabaseImpl(
                 farm.FarmId, farm.Name, farm.Description, farm.Address, farm.UserLogin, farm.UserId,
@@ -54,18 +58,21 @@ export class FarmDaoImpl implements FarmDao {
 
     async getConcreteFarm(farmName: string, token: string): Promise<FarmDatabase> {
         const response = await fetch(`${this.host}${this.apiVersion}farms/${farmName}`, {
-            method: 'GET',
+            method: 'GET',  
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         });
 
-        let farm = ((await response.json()) as Farm);
+        let farm = ((await response.json()) as any);
+
+        console.log(farm);
         
+
         return new FarmDatabaseImpl(
-            farm.FarmId, farm.Name, farm.Description, farm.Address, farm.UserLogin, farm.UserId,
-            farm.Honey.map(honey => {
+            farm.FarmId, farm.Name, farm.Description, farm.Address, farm.UserLogin, farm.UserLogin,
+            farm.Honey?.map((honey: any) => {
                 return new HoneyDatabaseImpl(
                     honey.HoneyId, honey.Name, honey.Description
                 )
@@ -73,8 +80,8 @@ export class FarmDaoImpl implements FarmDao {
         )
     }
 
-    createFarm(token: string, farm: FarmDatabase): void {
-        fetch(`${this.host}${this.apiVersion}farms`, {
+    createFarm(token: string, farm: FarmDatabase) {
+        return fetch(`${this.host}${this.apiVersion}farms`, {
             method: 'POST',
             body: JSON.stringify({
                 farmId: farm.getId(),
@@ -99,9 +106,9 @@ export class FarmDaoImpl implements FarmDao {
         });
     }
 
-    updateFarm(farmName: string, token: string, farm: FarmDatabase): void {
+    updateFarm(farmName: string, token: string, farm: FarmDatabase) {
         console.log("aaa", farmName, farm.getId(), farm.getDescription(), farm.getAddress(), farm.getHoneys());
-        fetch(`${this.host}${this.apiVersion}farms/${farmName}`, {
+        return fetch(`${this.host}${this.apiVersion}farms/${farmName}`, {
             method: 'PATCH',
             body: JSON.stringify({
                 name: farm.getName(),

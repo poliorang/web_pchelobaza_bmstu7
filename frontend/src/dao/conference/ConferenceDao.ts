@@ -5,12 +5,12 @@ import {ReviewDatabase} from "../../model/database/review/ReviewDatabase";
 export interface ConferenceDao {
     getAllConferences(token: string, limit: string, skipped: string): Promise<Array<ConferenceDatabase>>
     getConference(token: string, name: string): Promise<ConferenceDatabase>
-    createNewConference(token: string, conference: ConferenceDatabase): void
-    updateConferenceInfo(token: string, conference: ConferenceDatabase): void
+    createNewConference(token: string, conference: ConferenceDatabase): Promise<any>
+    updateConferenceInfo(token: string, conference: ConferenceDatabase): Promise<any>
 
     getParticipantConference(token: string, name: string): Promise<Array<UserBusinessModel>> 
-    updateParticipantConference(token: string, name: string): void
+    updateParticipantConference(token: string, name: string): Promise<any>
 
     getReviews(token: string, name: string): Promise<Array<ReviewDatabase>>
-    createReview(token: string, name: string, review: ReviewDatabase): void
+    createReview(token: string, name: string, review: ReviewDatabase): Promise<any>
 }
