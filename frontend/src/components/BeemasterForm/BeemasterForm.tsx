@@ -11,27 +11,31 @@ const BeemasterForm: FC = () => {
 
     const [description, setDescription] = useState("");
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         if (!description) {
             return;
         }
 
-        new RequestController().createRequest(token, {
-            login: login,
-            description: description,
-            status: ""
-        }).then((res) => {
-            if (res.ok) {
-                setDescription("")
-                window.alert("Заявка отправлена")
-            } else {
-                if (res.status === 409) {
-                    window.alert("Вы уже отправили заявку")
+        try {
+            await new RequestController().createRequest(token, {
+                login: login,
+                description: description,
+                status: ""
+            }).then((res) => {
+                if (res.ok) {
+                    setDescription("")
+                    window.alert("Заявка отправлена")
                 } else {
-                    window.alert("Произошла ошибка")
+                    if (res.status === 409) {
+                        window.alert("Вы уже отправили заявку")
+                    } else {
+                        window.alert("Произошла ошибка")
+                    }
                 }
-            }
-        });
+            });
+        } catch (err) {
+            window.alert("Произошла ошибка")
+        }
     };
 
     if (!isBeeman) {

@@ -12,6 +12,14 @@ import { HoneyController } from "../../controller/honey/HoneyController";
 import BoolButton from "../../components/BoolButton/BoolButton";
 import FieldWithLabel from "../../components/FieldWithLabel/FieldWithLabel";
 import { useNavigate } from "react-router";
+import { useDraft } from '../../hooks/draft.hook';
+
+interface FarmDraft {
+    nameText: string;
+    descriptionText: string;
+    addressText: string;
+    selectedHoneys: CreateHoneyDto[];
+}
 
 const CreateFarmPage = () => {
 
@@ -24,6 +32,32 @@ const CreateFarmPage = () => {
     const [addressText, setAddressText] = useState("");
 
     const [selectedHoneys, setSelectedHoneys] = useState(Array<CreateHoneyDto>);
+
+    const { saveDraft, getDraft, clearDraft } = useDraft<FarmDraft>(login + ':bee:farm');
+
+    useEffect(() => {
+        const draft = getDraft();
+
+        if (!draft) {
+            return;
+        }
+
+        setNameText(draft.nameText);
+        setDescriptionText(draft.descriptionText);
+        setAddressText(draft.addressText);
+        setSelectedHoneys(draft.selectedHoneys);
+    }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            saveDraft({
+                nameText,
+                addressText,
+                descriptionText,
+                selectedHoneys
+            })
+        }, 500)
+    }, [nameText, addressText, descriptionText, selectedHoneys])
 
     const handleButtonClickAddHoney = (honey: HoneyBusiness) => {
         const contains = Boolean(selectedHoneys.find(h => h.honeyId === honey.getId()));
@@ -39,8 +73,9 @@ const CreateFarmPage = () => {
         }
     };
 
-    const handleButtonClickCreateOrder = () => {
-        new FarmController().createFarm(token, {
+    const handleButtonClickCreateOrder = async () => {
+        try {
+            await new FarmController().createFarm(token, {
             farmId: Date.now(),
             name: nameText,
             description: descriptionText,
@@ -51,8 +86,13 @@ const CreateFarmPage = () => {
         }).then((res) => {
             if (res.ok) {
                 navigate('/profile');
-            }
-        })
+                clearDraft();
+            } else {
+                window.alert('Произошла ошибка');
+            }});
+        } catch (err) {
+            window.alert('Произошла ошибка');
+        }
     };
 
     const [honeys, setHoneys] = useState(Array<HoneyBusiness>);

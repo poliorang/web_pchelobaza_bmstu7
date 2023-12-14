@@ -16,12 +16,16 @@ const ConferencesPage: FC = () => {
 
     const [conferences, setConferences] = useState(Array<ConferenceBusiness>);
 
-    const getConferences = () => {
-        new ConferenceController().getAllConferences(token, "1000", "0").then(
-            array => {
-                setConferences(array)
-            }
-        ).catch();
+    const getConferences = async () => {
+        try {
+            await new ConferenceController().getAllConferences(token, "1000", "0").then(
+                array => {
+                    setConferences(array)
+                }
+            ).catch();
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {

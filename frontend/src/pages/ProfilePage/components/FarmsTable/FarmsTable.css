@@ -1,25 +1,32 @@
 .farms-table {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .farm-card {
-    padding: 27px;
+  padding: 27px;
 
-    width: 582px;
-    height: 235px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 582px;
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .farm-card h2 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .create-farm-button {
-    margin-left: auto;
+  margin-left: auto;
 
-    display: block;
+  display: block;
+}
+
+@media screen and (max-width: 700px) {
+  .farm-card {
+    width: 90%;
+    margin: 0 auto;
+  }
 }

@@ -1,13 +1,11 @@
-import React, { FC, useState } from 'react';
+import {FC, useState, useEffect} from 'react';
 import Header from "../../components/Header/Header";
 import { Link, useNavigate } from "react-router-dom";
-import BoolButton from "../../components/BoolButton/BoolButton";
 import FieldWithLabel from "../../components/FieldWithLabel/FieldWithLabel";
-import ConferenceParticipant from "../ConcreteConferencePage/components/ConferenceParticipant/ConferenceParticipant";
-import ConferenceReview from "../ConcreteConferencePage/components/ConferenceReview/ConferenceReview";
 import { ConferenceController } from "../../controller/conference/ConferenceController";
 import InputWithLabel from "../../components/FieldWithLabel/InputWithLabel";
 import { useAuthData } from "../../hooks/auth-data.hook";
+import {useDraft} from '../../hooks/draft.hook';
 
 const CreateConferencePage: FC = () => {
 
@@ -21,7 +19,7 @@ const CreateConferencePage: FC = () => {
     const [maximum, setMaximum] = useState("")
     const [description, setDescription] = useState("");
 
-    const createConference = () => {
+    const createConference = async () => {
         if (
             !name
             || !address
@@ -33,22 +31,26 @@ const CreateConferencePage: FC = () => {
             return;
         }
 
-        new ConferenceController().createNewConference(token, {
-            name,
-            description,
-            userLogin: login,
-            confId: Date.now(),
-            date: new Date(date).toJSON(),
-            currentUsers: 0,
-            address,
-            maxUsers: Number(maximum)
-        }).then(res => {
-            if (!res.ok) {
-                window.alert("Что-то тут не так!")
-            } else {
-                navigate('/conferences');
-            }
-        });
+        try {
+            await new ConferenceController().createNewConference(token, {
+                name,
+                description,
+                userLogin: login,
+                confId: Date.now(),
+                date: new Date(date).toJSON(),
+                currentUsers: 0,
+                address,
+                maxUsers: Number(maximum)
+            }).then(res => {
+                if (!res.ok) {
+                    window.alert("Что-то тут не так!")
+                } else {
+                    navigate('/conferences');
+                }
+            });
+        } catch (err) {
+            window.alert("Что-то тут не так!")
+        }
     }
 
     return (

@@ -15,14 +15,18 @@ const CreateReview: FC<Props> = ({ conferenceName, onSubmit }) => {
 
     const [description, setDescription] = useState("");
 
-    const createReview = () => {
-        new ConferenceController().createReview(token, conferenceName, {
-            description: description,
-            login: login,
-            name: "",
-            surname: "",
-            date: new Date().toJSON(),
-        }).then(() => setDescription("")).then(() => onSubmit?.())
+    const createReview = async () => {
+        try {
+            await new ConferenceController().createReview(token, conferenceName, {
+                description: description,
+                login: login,
+                name: "",
+                surname: "",
+                date: new Date().toJSON(),
+            }).then(() => setDescription("")).then(() => onSubmit?.())
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     return (

@@ -46,12 +46,13 @@ const EditFarmPage: FC = () => {
         }
     };
 
-    const getFarm = () => {
+    const getFarm = async () => {
         if (!farmName) {
             return;
         }
 
-        new FarmController().getConcreteFarm(farmName, token)
+        try {
+            await new FarmController().getConcreteFarm(farmName, token)
             .then(
                 farm => {
                     setNameText(farm.getName());
@@ -64,14 +65,21 @@ const EditFarmPage: FC = () => {
                     })
                 }
             )
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
-    const getHoneys = () => {
-        new HoneyController().getHoneys(token).then(
-            array => {
-                setHoneys(array)
-            }
-        ).catch()
+    const getHoneys = async () => {
+        try {
+            await new HoneyController().getHoneys(token).then(
+                array => {
+                    setHoneys(array)
+                }
+            ).catch()
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {
@@ -87,7 +95,7 @@ const EditFarmPage: FC = () => {
     }, [honeys])
 
 
-    const updateFarm = () => {
+    const updateFarm = async () => {
         const honeyRes: CreateHoneyDto[] = [];
 
         Array.from(new Set([...selectedHoneys.map(h => h.honeyId)])).forEach(honeyId => {
@@ -95,23 +103,26 @@ const EditFarmPage: FC = () => {
             honeyRes.push(h!);
         })
 
-        new FarmController().updateFarm(farmName!, token, {
-            farmId: id,
-            name: nameText,
-            description: descriptionText,
-            address: addressText,
-            userLogin: "",
-            userId: 0,
-            honey: honeyRes
-        }).then((res) => {
-            if (res.ok) {
-                navigate('/profile');
-            } else {
-                window.alert("Произошла ошибка")
-            }
-        })
+        try {
+            await new FarmController().updateFarm(farmName!, token, {
+                farmId: id,
+                name: nameText,
+                description: descriptionText,
+                address: addressText,
+                userLogin: "",
+                userId: 0,
+                honey: honeyRes
+            }).then((res) => {
+                if (res.ok) {
+                    navigate('/profile');
+                } else {
+                    window.alert("Произошла ошибка")
+                }
+            })
+        } catch (err) {
+            window.alert("Произошла ошибка")
+        }
     };
-
 
     return (
         <div className="create-farm-page">

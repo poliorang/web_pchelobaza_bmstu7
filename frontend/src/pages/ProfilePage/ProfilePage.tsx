@@ -36,7 +36,7 @@ const ProfilePage: FC = () => {
 
     const [password, setPassword] = useState("")
 
-    const getUserInfo = () => {
+    const getUserInfo = async () => {
         setId("Loading...")
         setLoginRs("Loading...")
         setName("Loading...")
@@ -44,18 +44,22 @@ const ProfilePage: FC = () => {
         setContact("Loading...")
         setRegDate("Loading...")
         setRole("Loading...")
-        new UserController().getUser(login, token).then(
-            user => {
-                setId(user.getId().toString())
-                setLoginRs(user.getLogin())
-                setName(user.getName())
-                setSurname(user.getSurname())
-                setContact(user.getContact())
-                setRegDate(user.getRegDate())
-                setRole(user.getRole())
-                setPassword(user.getPassword());
-            }
-        ).catch();
+
+        try {
+            await new UserController().getUser(login, token).then(
+                user => {
+                    setId(user.getId().toString())
+                    setLoginRs(user.getLogin())
+                    setName(user.getName())
+                    setSurname(user.getSurname())
+                    setContact(user.getContact())
+                    setRegDate(user.getRegDate())
+                    setRole(user.getRole())
+                    setPassword(user.getPassword());
+            }).catch();
+        } catch(err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {
@@ -71,23 +75,25 @@ const ProfilePage: FC = () => {
         navigate('/login');
     }
 
-    const updateProfile = () => {
-        new UserController().updateUser(
-            token, {
-                userId: Number(id),
-                login: login,
-                password: password,
-                name: name,
-                surname: surname,
-                contact: contact
-            }
-        ).then(() => {
-           window.alert("Профиль обновлен");
-           setLogin(login)
-        }).catch(() => {
+    const updateProfile = async () => {
+        try {
+            await new UserController().updateUser(token, {
+                    userId: Number(id),
+                    login: login,
+                    password: password,
+                    name: name,
+                    surname: surname,
+                    contact: contact
+                }
+            ).then(() => {
+                window.alert("Профиль обновлен");
+                setLogin(login)
+            })
+        } catch (err) {
             window.alert("Ошибка обновления профиля");
-        });
-    };
+        }
+    }
+
 
     return (
         <div className="profile-page soty-bg">

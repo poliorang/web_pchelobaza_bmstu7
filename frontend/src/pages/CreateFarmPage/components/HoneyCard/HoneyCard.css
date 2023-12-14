@@ -1,17 +1,33 @@
 .honey-card {
-    width: 580px;
-    height: 375px;
+  width: 580px;
+  height: 375px;
 
-    padding: 30px;
+  padding: 30px;
 }
 
 .honey-card h2 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .honey-card p {
-    margin-top: 10px;
-    font-size: 16px;
-    line-height: 28px;
-    color: rgba(52, 48, 37, 1);
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 28px;
+  color: rgba(52, 48, 37, 1);
+}
+
+@media screen and (max-width: 900px) {
+  .honey-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .farm-info,
+  .farm-login,
+  .farm-description,
+  .farm-description textarea {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
 }

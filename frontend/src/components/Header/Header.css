@@ -1,59 +1,83 @@
-
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    height: 80px;
-    padding: 0 40px;
+  width: 100vw;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+  height: 80px;
+  padding: 0 40px;
 
-    z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 10000;
 }
 
 .header-logo {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header-links {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .header a {
-    width: 250px;
-    height: 70px;
-    font-size: 28px;
-    color: #000;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 250px;
+  height: 70px;
+  font-size: 28px;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0% 100%;
-    background-repeat: no-repeat;
-    background-size: 0% 2px;
-    transition: background-size .3s;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s;
 }
 
 .header a:hover {
-    background-size: 100% 2px;
+  background-size: 100% 2px;
 }
 
-@media screen and (max-width: 1000px){
-    .header a,
-    .header button {
-        width: 100px;
-    }
+@media screen and (max-width: 1000px) {
+  .header a,
+  .header button {
+    width: 100px;
+  }
 
-    .header-links {
-        gap: 50px;
-    }
+  .header-links {
+    gap: 50px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    padding: 0;
+    width: 100vw;
+  }
+
+  .header a {
+    font-size: 14px;
+    width: 80px;
+  }
+
+  .header button {
+    width: 80px;
+    font-size: 14px;
+    height: 40px;
+    margin-top: 14px;
+  }
+
+  .header-links {
+    gap: 10px;
+  }
 }

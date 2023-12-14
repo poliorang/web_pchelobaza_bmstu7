@@ -16,12 +16,16 @@ const ConferenceReview: FC<Props> = ({ conferenceName }) => {
 
     const [array, setArray] = useState(Array<ReviewBusiness>);
 
-    const getReviews = () => {
-        new ConferenceController().getReviews(token, conferenceName).then(
-            array => {
-                setArray(array)
-            }
-        )
+    const getReviews = async () => {
+        try {
+            await new ConferenceController().getReviews(token, conferenceName).then(
+                array => {
+                    setArray(array)
+                }
+            )
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {

@@ -20,19 +20,23 @@ const FarmsTable: FC<Props> = ({ login, noCreate }) => {
 
     const [farms, setFarms] = useState(Array<FarmBusiness>);
 
-    const getFarms = () => {
-        new FarmController().getFarms({
-            token: token,
-            limit: 10_000,
-            login: login,
-            skipped: 0,
-        }).then(
-            array => {
-                setFarms(array)
-            }
-        ).catch(() => {
+    const getFarms = async () => {
+        try {
+            await new FarmController().getFarms({
+                token: token,
+                limit: 10_000,
+                login: login,
+                skipped: 0,
+            }).then(
+                array => {
+                    setFarms(array)
+                }
+            ).catch(() => {
+                window.alert("Ошибка получения медоварен")
+            })
+        } catch (err) {
             window.alert("Ошибка получения медоварен")
-        })
+        }
     };
 
     useEffect(() => {
@@ -48,7 +52,6 @@ const FarmsTable: FC<Props> = ({ login, noCreate }) => {
 
         return `/farm/${name}`
     }
-
 
     return (
         <div className="farms-table">

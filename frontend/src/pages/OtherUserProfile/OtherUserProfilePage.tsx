@@ -24,14 +24,19 @@ const OtherUserProfilePage: FC = () => {
 
     const [user, setUser] = useState<UserBusinessModel>()
 
-    const getUserInfo = () => {
-        new UserController().getUser(userLogin!, token).then(
-            user => {
-                setUser(user);
-            }
-        ).catch(() => {
+    const getUserInfo = async () => {
+        try {
+            await new UserController().getUser(userLogin!, token).then(
+                user => {
+                    setUser(user);
+                }
+            ).catch(() => {
+                window.alert("Ошибка получения пользователя")
+            });
+        } catch (err) {
             window.alert("Ошибка получения пользователя")
-        });
+        }
+
     };
 
     useEffect(() => {

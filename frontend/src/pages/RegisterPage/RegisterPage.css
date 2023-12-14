@@ -1,10 +1,26 @@
 .register-wrapper {
-    display: flex;
-    gap: 115px;
+  display: flex;
+  gap: 115px;
 }
 
 .register-column {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form {
+  min-height: 550px;
+}
+
+@media screen and (max-width: 1000px) {
+  .register-wrapper {
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
+  }
+
+  .login-form {
+    height: unset;
+    padding: 20px;
+  }
 }

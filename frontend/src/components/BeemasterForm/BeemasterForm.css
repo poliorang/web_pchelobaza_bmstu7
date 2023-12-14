@@ -1,59 +1,69 @@
-
 .beemaster-form {
-    display: flex;
-    gap: 170px;
+  display: flex;
+  gap: 170px;
 
-    justify-content: center;
+  justify-content: center;
 
-    margin-top: 200px;
-    margin-bottom: 200px;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
-.beemaster-form-info  {
-    width: 430px;
-    height: 187px;
+.beemaster-form-info {
+  width: 430px;
+  height: 187px;
 
-    padding: 20px;
+  padding: 20px;
 
-    position: relative;
+  position: relative;
 }
 
 .beemaster-form-info p {
-    line-height: 28px;
-    margin-top: 10px;
+  line-height: 28px;
+  margin-top: 10px;
 }
 
 .bee-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-    transform: translate(134%, -50%);
+  transform: translate(134%, -50%);
 
-
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .beemaster-form-input {
-    width: 530px;
-    height: 307px;
-    padding: 20px;
-
+  width: 530px;
+  height: 307px;
+  padding: 20px;
 }
 
 .beemaster-form-header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1150px) {
-    .beemaster-form {
-        flex-direction: column;
-        justify-content: center;
-    }
+  .beemaster-form {
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    .beemaster-form-info,
-    .beemaster-form-input{
-        margin: 0 auto;
-    }
+  .beemaster-form-info,
+  .beemaster-form-input {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .beemaster-form-info,
+  .beemaster-form-input,
+  .beemaster-form-input textarea {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .bee-image {
+    display: none;
+  }
 }

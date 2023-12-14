@@ -1,24 +1,32 @@
 .conference-participant-table {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 
-    width: 580px;
+  width: 580px;
 }
 
 .conference-participant {
-    width: 100%;
-    height: 145px;
+  width: 100%;
+  height: 145px;
 
-    padding: 30px;
+  padding: 30px;
 }
 
 .conference-participant h2 {
-    font-size: 28px;
-    font-weight: 700;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .conference-participant button {
-    margin-left: auto;
-    margin-top: 30px;
+  margin-left: auto;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 700px) {
+  .conference-participant-table {
+    max-width: 100vw;
+    width: 90%;
+    margin: 0 auto;
+  }
 }

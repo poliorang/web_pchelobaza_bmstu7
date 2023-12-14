@@ -16,12 +16,16 @@ const HoneyTable: FC<Props> = ({ selectedHoneys }) => {
 
     const [honeys, setHoneys] = useState(Array<HoneyBusiness>);
 
-    const getHoneys = () => {
-        new HoneyController().getHoneys(token).then(
-            array => {
-                setHoneys(array)
-            }
-        ).catch()
+    const getHoneys = async () => {
+        try {
+            await new HoneyController().getHoneys(token).then(
+                array => {
+                    setHoneys(array)
+                }
+            ).catch()
+        } catch (err) {
+            console.log('Произошла ошибка');
+        }
     };
 
     useEffect(() => {

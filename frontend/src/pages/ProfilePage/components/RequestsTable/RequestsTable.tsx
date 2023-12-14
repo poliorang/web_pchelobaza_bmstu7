@@ -12,17 +12,21 @@ const RequestsTable = () => {
 
     const [array, setArray] = useState(Array<RequestBusiness>);
 
-    const getRequests = () => {
-        new RequestController().getRequests({
-            login: "",
-            limit: 10_000,
-            skipped: 0,
-            token: token
-        }).then(
-            array => {
-                setArray(array)
-            }
-        )
+    const getRequests = async () => {
+        try {
+            await new RequestController().getRequests({
+                login: "",
+                limit: 10_000,
+                skipped: 0,
+                token: token
+            }).then(
+                array => {
+                    setArray(array)
+                }
+            )
+        } catch (err) {
+            window.alert('Произошла ошибка')
+        }
     };
 
     const navigate = useNavigate();
@@ -31,18 +35,22 @@ const RequestsTable = () => {
         getRequests();
     }, [])
 
-    const updateReq = (login: string, description: string, status: string) => {
-        new RequestController().updateRequest(token, {
-            login: login,
-            description: description,
-            status: status
-        }).then(res => {
-            if (res.ok) {
-                getRequests();
-            } else {
-                window.alert('Произошла ошибка')
-            }
-        })
+    const updateReq = async (login: string, description: string, status: string) => {
+        try {
+            await new RequestController().updateRequest(token, {
+                login: login,
+                description: description,
+                status: status
+            }).then(res => {
+                if (res.ok) {
+                    getRequests();
+                } else {
+                    window.alert('Произошла ошибка')
+                }
+            })
+        } catch (err) {
+            window.alert('Произошла ошибка')
+        }
     };
 
     return (

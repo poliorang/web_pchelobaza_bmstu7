@@ -63,3 +63,55 @@
   display: flex;
   gap: 70px;
 }
+
+@media screen and (max-width: 1200px) {
+  .conference-info-wrapper,
+  .conference-additional {
+    flex-direction: column;
+  }
+
+  .conference-info,
+  .conference-login {
+    margin: 0 auto;
+  }
+
+  .conference-info-wrapper .column {
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .conference-description,
+  .conference-participant,
+  .create-review,
+  .conference-info,
+  .conference-login,
+  .review {
+    width: 90% !important;
+    margin: 0 auto !important;
+  }
+
+  .conference-description textarea,
+  .create-review textarea {
+    width: 90%;
+    margin: 0 auto !important;
+    display: block;
+  }
+
+  .conference-info input {
+    width: 100%;
+  }
+
+  .conference.column {
+    width: 100vw;
+  }
+
+  .conference-info,
+  .conference-description {
+    min-height: unset;
+  }
+
+  .conference-description {
+    margin-bottom: 50px !important;
+  }
+}

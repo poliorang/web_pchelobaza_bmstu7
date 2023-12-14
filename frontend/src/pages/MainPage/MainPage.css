@@ -1,33 +1,40 @@
-
 .main-page {
-    position: relative;
+  position: relative;
 
-    padding: 40px;
-    margin-right: -150px;
+  padding: 40px;
+  margin-right: -150px;
 }
 
 .soty-image {
-    position: absolute;
-    left: 0;
+  position: absolute;
+  left: 0;
 
-    transform: translateX(-80%) translateY(-40%);
-    margin-right: -40px;
+  transform: translateX(-80%) translateY(-40%);
+  margin-right: -40px;
 }
 
 .main-header {
-    color: rgba(52, 48, 37, 1);
+  color: rgba(52, 48, 37, 1);
 
-    font-size: 28px;
-    font-weight: 700;
+  font-size: 28px;
+  font-weight: 700;
 
-    margin-bottom: 8px;
-
+  margin-bottom: 8px;
 }
 
 .main-info {
-    color:rgba(52, 48, 37, 1);
-    font-size: 12px;
-    line-height: 28px;
+  color: rgba(52, 48, 37, 1);
+  font-size: 12px;
+  line-height: 28px;
 
-    max-width: 570px;
+  max-width: 570px;
+}
+
+@media screen and (max-width: 1200px) {
+  .soty-image {
+    transform: translateY(150px);
+  }
+  .main-page {
+    margin: 0;
+  }
 }

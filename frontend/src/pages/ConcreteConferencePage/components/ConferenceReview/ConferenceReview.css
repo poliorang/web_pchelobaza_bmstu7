@@ -1,12 +1,19 @@
 .review-table {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 580px;
 }
 
 .review {
-    width: 100%;
-    min-height: 135px;
-    padding: 30px;
+  width: 100%;
+  min-height: 135px;
+  padding: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+  .review-table {
+    max-width: 90vw;
+    margin: 0 auto;
+  }
 }

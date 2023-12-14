@@ -17,8 +17,6 @@ const ConferenceParticipant: FC<Props> = ({ conferenceName, users }) => {
 
     const navigate = useNavigate();
 
-
-
     return (
         <div className="conference-participant-table">
 

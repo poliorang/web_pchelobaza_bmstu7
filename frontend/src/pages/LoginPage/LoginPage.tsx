@@ -52,7 +52,7 @@ const LoginPage = () => {
                 <Link to="/register">register</Link>
             </Header>
 
-            <div className="login-form">
+            <form className="login-form" onSubmit={e => { e.preventDefault(); handleButtonClick(); }}>
                 <input
                     type="text" placeholder="login" className="text-field" value={inputText1}
                     onChange={(e) => setInputText1(e.target.value)}
@@ -62,14 +62,14 @@ const LoginPage = () => {
                     onChange={(e) => setInputText2(e.target.value)}
                 />
 
-                <button className="large-button" onClick={handleButtonClick}>
+                <button className="large-button" onClick={handleButtonClick} type='submit'>
                     log in
                 </button>
 
                 <button className="large-button" onClick={() => navigate('/register')}>
                     register
                 </button>
-            </div>
+            </form>
         </div>
     );
 };

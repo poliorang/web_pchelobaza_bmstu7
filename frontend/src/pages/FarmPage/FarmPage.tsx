@@ -47,48 +47,42 @@ const FarmPage: FC = () => {
         }
     };
 
-    const handleButtonClickCreateOrder = () => {
-        new FarmController().createFarm(token, {
-            farmId: Date.now(),
-            name: nameText,
-            description: descriptionText,
-            address: addressText,
-            userLogin: login,
-            userId: Number(userId),
-            honey: selectedHoneys
-        }).then(() => {
-            navigate('/profile');
-        })
-    };
-
     const [honeys, setHoneys] = useState(Array<HoneyBusiness>);
 
-    const getHoneys = () => {
-        new HoneyController().getHoneys(token).then(
-            array => {
-                setHoneys(array)
-            }
-        ).catch()
+    const getHoneys = async () => {
+        try {
+            await new HoneyController().getHoneys(token).then(
+                array => {
+                    setHoneys(array)
+                }
+            ).catch()
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
-    const getFarm = () => {
+    const getFarm = async () => {
         if (!name) {
             return;
         }
 
-        new FarmController().getConcreteFarm(name, token)
-            .then(
-                farm => {
-                    setNameText(farm.getName());
-                    setDescriptionText(farm.getDescription());
-                    setAddressText(farm.getAddress());
-                    setLoginFarm(farm.getLogin())
+        try {
+            await new FarmController().getConcreteFarm(name, token)
+                .then(
+                    farm => {
+                        setNameText(farm.getName());
+                        setDescriptionText(farm.getDescription());
+                        setAddressText(farm.getAddress());
+                        setLoginFarm(farm.getLogin())
 
-                    farm.getHoneys().forEach(honey => {
-                        handleButtonClickAddHoney(honey);
-                    })
-                }
-            )
+                        farm.getHoneys().forEach(honey => {
+                            handleButtonClickAddHoney(honey);
+                        })
+                    }
+                )
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {

@@ -31,27 +31,35 @@ const ConcreteConferencePage: FC = () => {
     const [participants, setParticipants] = useState(Array<UserBusinessModel>);
     const [alreadyParticipate, setAlreadyParticipate] = useState(false)
 
-    const getConference = () => {
-        new ConferenceController().getConference(token, name!).then(
-            it => {
-                setConference(it)
-            }
-        )
+    const getConference = async () => {
+        try {
+            await new ConferenceController().getConference(token, name!).then(
+                it => {
+                    setConference(it)
+                }
+            )
+        } catch (err) {
+            window.alert("Произошла ошибка");
+        }
     };
 
-    const getParticipants = () => {
-        new ConferenceController().getParticipantConference(token, name!).then(
-            array => {
-                setParticipants(array)
+    const getParticipants = async () => {
+        try {
+            await new ConferenceController().getParticipantConference(token, name!).then(
+                array => {
+                    setParticipants(array)
 
-                console.log(array, Boolean(array.find(p => p.getLogin() === login)));
-                
+                    console.log(array, Boolean(array.find(p => p.getLogin() === login)));
+                    
 
-                setAlreadyParticipate(
-                    Boolean(array.find(p => p.getLogin() === login))
-                )
-            }
-        )
+                    setAlreadyParticipate(
+                        Boolean(array.find(p => p.getLogin() === login))
+                    )
+                }
+            )
+        } catch (err) {
+             window.alert("Произошла ошибка");
+        }
     };
 
     useEffect(() => {
@@ -94,7 +102,7 @@ const ConcreteConferencePage: FC = () => {
             </Header>
 
             <div className="conference-info-wrapper">
-                <div className="column">
+                <div className="column conference">
                     <div className="conference-info card">
                         <FieldWithLabel label="name" value={conference.getName()} />
                         <FieldWithLabel label="address" value={conference.getAddress()} />
@@ -110,7 +118,7 @@ const ConcreteConferencePage: FC = () => {
                     </div>
                 </div>
 
-                <div className="column">
+                <div className="column conference">
                     <div className="conference-description card">
                         <h2>{conference.getName()}</h2>
                         <p>{conference.getDescription()}</p>
