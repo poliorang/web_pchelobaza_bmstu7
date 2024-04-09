@@ -4,6 +4,7 @@
 ## Фронтенд пет-проекта "Пчелобаза" - сайта для пчеловодов
 
 Backend делала [@Dashori](https://github.com/Dashori) и его можно посмотреть [тут](https://github.com/Dashori/pchelobaza)  
+Проджект/продакт менеджером был [@StasyanVinograd](https://github.com/StasyanVinograd) и его работу можно посмотреть [тут](https://github.com/StasyanVinograd/pchelobaza/wiki)
 
 ### Макеты в Figma
 > https://www.figma.com/file/748w3YfernlrfhSHIY06Rh/phelobaza?type=design&node-id=256-518&mode=design&t=xw1XYSVkd10Ir5Ci-0
